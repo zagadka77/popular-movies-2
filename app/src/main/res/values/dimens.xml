@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018 Pierluca Masala <pierluca.masala@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<resources>
+    <!-- Margins and dimensions -->
+    <dimen name="no_margin">0dp</dimen>
+    <dimen name="smaller_margin">4dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="goto_page_input_margin">20dp</dimen>
+    <dimen name="big_margin">24dp</dimen>
+    <dimen name="bigger_margin">36dp</dimen>
+    <dimen name="very_big_margin">64dp</dimen>
+    <dimen name="progress_bar_dim">42dp</dimen>
+    <dimen name="play_icon_video_thumbnail">70dp</dimen>
+    <dimen name="backdrop_height_details">200dp</dimen>
+    <dimen name="fab_margin_top_details">172dp</dimen>
+
+    <!-- Font sizes -->
+    <dimen name="detail_font_size_title">24sp</dimen>
+    <dimen name="detail_font_size_release_date">24sp</dimen>
+    <dimen name="detail_font_size_rating">20sp</dimen>
+    <dimen name="detail_font_size_header_label">20sp</dimen>
+    <dimen name="detail_font_size_overview">16sp</dimen>
+    <dimen name="font_size_error">18sp</dimen>
+    <dimen name="main_actual_pages">18sp</dimen>
+    <dimen name="grid_movie_title">18sp</dimen>
+    <dimen name="grid_movie_year">12sp</dimen>
+    <dimen name="credits_disclaimer_font_size">16sp</dimen>
+    <dimen name="credits_libraries_label_font_size">20sp</dimen>
+    <dimen name="credits_libraries_text">16sp</dimen>
+
+</resources>

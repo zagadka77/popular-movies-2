@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018 Pierluca Masala <pierluca.masala@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The variable provide to populate the views through the android data binding -->
+    <data>
+
+        <variable
+                name="movie"
+                type="com.example.android.popularmovies.data.objects.Movie"/>
+    </data>
+
+    <!-- Implements SwipeRefreshLayout in order to be able to refresh DetailActivity without having
+        to close and restart the app -->
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ScrollView
+                android:id="@+id/details_sv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <!-- A CardView which will contain all movie information -->
+                <android.support.v7.widget.CardView
+                        android:id="@+id/movie_details_cv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/small_margin"
+                        android:visibility="invisible">
+
+                    <android.support.constraint.ConstraintLayout
+                            android:id="@+id/constraint_layout_cl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_margin"
+                            tools:context="com.example.android.popularmovies.DetailActivity">
+
+                        <!-- ImageView for the movie's backdrop image -->
+                        <ImageView
+                                android:id="@+id/backdrop_image_iv"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/backdrop_height_details"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/poster_content_description"
+                                android:scaleType="centerCrop"
+                                android:visibility="visible"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@android:color/background_light"/>
+
+                        <!-- The movie's title -->
+                        <TextView
+                                android:id="@+id/title_tv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:text="@{movie.title}"
+                                android:textColor="@android:color/black"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/detail_font_size_title"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/add_to_favorites_fab"
+                                tools:text="Movie Title"/>
+
+                        <!-- The movie's release date -->
+                        <TextView
+                                android:id="@+id/release_date_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:text="@{movie.releaseDate}"
+                                android:textColor="@android:color/black"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/detail_font_size_release_date"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/title_tv"
+                                tools:text="Release Date"/>
+
+                        <!-- The user rating -->
+                        <TextView
+                                android:id="@+id/user_rating_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:text="@{Float.toString(movie.userRating)}"
+                                android:textColor="@android:color/black"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/detail_font_size_rating"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/release_date_tv"
+                                tools:text="User Rating"/>
+
+                        <!-- The user rating converted to a 5 star RatingBar -->
+                        <RatingBar
+                                android:id="@+id/rating_bar_rb"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/normal_margin"
+                                android:layout_marginLeft="@dimen/small_margin"
+                                android:layout_marginStart="@dimen/small_margin"
+                                android:layout_marginTop="@dimen/small_margin"
+                                android:isIndicator="true"
+                                android:numStars="5"
+                                android:rating="@{(movie.getUserRating() / 10) * 5}"
+                                app:layout_constraintBottom_toTopOf="@+id/overview_label_tv"
+                                app:layout_constraintStart_toEndOf="@+id/user_rating_tv"
+                                app:layout_constraintTop_toBottomOf="@+id/release_date_tv"/>
+
+                        <!-- The movie's overview label -->
+                        <TextView
+                            android:id="@+id/overview_label_tv"
+                            android:layout_width="@dimen/no_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/normal_margin"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/normal_margin"
+                            android:paddingBottom="@dimen/small_margin"
+                            android:text="@string/overview_label"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/detail_font_size_header_label"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/user_rating_tv" />
+
+                        <!-- An error message for when there is no overview -->
+                        <TextView
+                            android:id="@+id/detail_error_no_overview_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/normal_margin"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:text="@string/no_overview_available"
+                            android:textStyle="italic"
+                            android:visibility="gone"
+                            app:layout_constraintBaseline_toBaselineOf="@id/overview_label_tv"
+                            app:layout_constraintBottom_toBottomOf="@+id/overview_label_tv"
+                            app:layout_constraintStart_toEndOf="@+id/overview_label_tv"
+                            app:layout_constraintTop_toTopOf="@+id/overview_label_tv" />
+
+                        <!-- The movie's overview (synopsis) -->
+                        <TextView
+                                android:id="@+id/overview_tv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginRight="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:paddingBottom="@dimen/normal_margin"
+                                android:text="@{movie.overview}"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/detail_font_size_overview"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/overview_label_tv"
+                                tools:text="Overview"/>
+
+                        <!-- The movie's videos label -->
+                        <TextView
+                                android:id="@+id/videos_label_tv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:paddingBottom="@dimen/small_margin"
+                                android:text="@string/videos_label"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/detail_font_size_header_label"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/overview_tv"/>
+
+                        <!-- An error message for when there are no videos -->
+                        <TextView
+                                android:id="@+id/detail_error_no_videos_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_videos_available"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:textStyle="italic"
+                                android:visibility="gone"
+                                app:layout_constraintBaseline_toBaselineOf="@id/videos_label_tv"
+                                app:layout_constraintStart_toEndOf="@+id/videos_label_tv"
+                                app:layout_constraintTop_toTopOf="@+id/videos_label_tv"
+                                app:layout_constraintBottom_toBottomOf="@+id/videos_label_tv"
+                                android:layout_marginLeft="@dimen/normal_margin"/>
+
+                        <!-- The videos thumbnails -->
+                        <android.support.v7.widget.RecyclerView
+                                android:id="@+id/videos_rv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginRight="@dimen/normal_margin"
+                                android:paddingBottom="@dimen/normal_margin"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/videos_label_tv"/>
+
+                        <!-- The movie's reviews label -->
+                        <TextView
+                                android:id="@+id/reviews_label_tv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:paddingBottom="@dimen/small_margin"
+                                android:text="@string/reviews_label"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/detail_font_size_header_label"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/videos_rv"/>
+
+                        <!-- An error message for when there are no reviews -->
+                        <TextView
+                                android:id="@+id/detail_error_no_reviews_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_reviews_available"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:textStyle="italic"
+                                android:visibility="visible"
+                                app:layout_constraintStart_toEndOf="@+id/reviews_label_tv"
+                                app:layout_constraintTop_toTopOf="@+id/reviews_label_tv"
+                                app:layout_constraintBottom_toBottomOf="@+id/reviews_label_tv"
+                                app:layout_constraintBaseline_toBaselineOf="@id/reviews_label_tv"
+                                android:layout_marginLeft="@dimen/normal_margin"/>
+
+                        <!-- An icon to expand or collapse the reviews -->
+                        <ImageView
+                                android:id="@+id/reviews_expand_icon_iv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/small_margin"
+                                android:layout_marginStart="@dimen/small_margin"
+                                android:layout_marginTop="@dimen/smaller_margin"
+                                app:layout_constraintStart_toEndOf="@+id/reviews_label_tv"
+                                app:layout_constraintTop_toTopOf="@+id/reviews_label_tv"
+                            android:contentDescription="@string/reviews_expand_icon"
+                                app:srcCompat="@drawable/ic_expand_more_black_24dp"/>
+
+                        <!-- The reviews -->
+                        <android.support.v7.widget.RecyclerView
+                                android:id="@+id/reviews_rv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginLeft="@dimen/normal_margin"
+                                android:layout_marginRight="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/reviews_label_tv"/>
+
+                        <!-- The loading indicator for the backdrop image -->
+                        <ProgressBar
+                                android:id="@+id/detail_pb"
+                                style="?android:attr/progressBarStyle"
+                                android:layout_width="@dimen/progress_bar_dim"
+                                android:layout_height="@dimen/progress_bar_dim"
+                                android:layout_marginTop="@dimen/very_big_margin"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/backdrop_image_iv"/>
+
+                        <!-- An error message for the backdrop image -->
+                        <TextView
+                                android:id="@+id/detail_error_no_image_tv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/small_margin"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/very_big_margin"
+                                android:text="@string/detail_image_error_message"
+                                android:textAlignment="center"
+                                android:textIsSelectable="true"
+                                android:textSize="@dimen/font_size_error"
+                                android:visibility="invisible"
+                                app:layout_constraintBottom_toBottomOf="@+id/backdrop_image_iv"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/backdrop_image_iv"/>
+
+                        <!-- An error message for when there is no data -->
+                        <TextView
+                                android:id="@+id/detail_error_no_data_tv"
+                                android:layout_width="@dimen/no_margin"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/normal_margin"
+                                android:layout_marginStart="@dimen/normal_margin"
+                                android:layout_marginTop="@dimen/smaller_margin"
+                                android:text="@string/detail_no_data_error_message"
+                                android:textStyle="italic"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/overview_tv"/>
+
+                        <!-- A floating action button to add or remove a movie from favorites -->
+                        <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/add_to_favorites_fab"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/big_margin"
+                                android:layout_marginRight="@dimen/big_margin"
+                                android:layout_marginTop="@dimen/fab_margin_top_details"
+                                android:clickable="true"
+                                android:focusable="true"
+                                app:borderWidth="@dimen/no_margin"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/backdrop_image_iv"
+                                app:pressedTranslationZ="@dimen/normal_margin"
+                                app:rippleColor="@android:color/white"
+                                app:srcCompat="@drawable/ic_favorite_border_white_24dp"/>
+
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <!-- Loading indicator -->
+                <ProgressBar
+                        android:id="@+id/loading_indicator_pb"
+                        android:layout_width="@dimen/progress_bar_dim"
+                        android:layout_height="@dimen/progress_bar_dim"
+                        android:layout_centerInParent="true"
+                        android:visibility="visible"/>
+
+            </RelativeLayout>
+
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</layout>

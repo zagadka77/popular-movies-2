@@ -1,0 +1,81 @@
+<!--
+  ~ Copyright (c) 2018 Pierluca Masala <pierluca.masala@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="movie_detail_label">Movie Detail</string>
+    <string name="action_search">Search movies</string>
+    <string name="action_credits">Credits</string>
+    <string name="search_for">Search for:&#160;</string>
+    <string name="credits_tmdb">This product uses the TMDb API but is not endorsed or certified by TMDb.</string>
+    <string name="credits_tmdb_link">https://www.themoviedb.org/</string>
+    <string name="credits_tmdb_logo_cont_descr">TheMovieDB Logo</string>
+
+    <string name="pref_movies_selection_key">sortby</string>
+    <string name="pref_movies_selection_title">Sort by</string>
+    <string name="pref_movies_selection_default" translatable="false">popular</string>
+    <string name="pref_movies_selection_top_rated_label">Top rated movies</string>
+    <string name="pref_movies_selection_favorite_label">Favorite movies</string>
+    <string name="pref_movies_selection_popular_label">Popular movies</string>
+    <string name="pref_movies_selection_top_rated" translatable="false">top_rated</string>
+    <string name="pref_movies_selection_popular" translatable="false">popular</string>
+    <string name="pref_movies_selection_favorite" translatable="false">favorite</string>
+
+    <string name="detail_error_message">There was an error loading the movie\'s details</string>
+    <string name="search_error_message">There was an error in the search query</string>
+    <string name="detail_image_error_message">No image available</string>
+    <string name="detail_no_data_error_message">No videos and reviews data available, please check your internet connection!</string>
+    <string name="error_message_no_movies">Movie data not available!\n\nPlease check your internet connection.</string>
+    <string name="no_movies_found">No movies found!</string>
+    <string name="poster_content_description">Poster image</string>
+    <string name="movie_added_to_favorites">Movie added to favorites.</string>
+    <string name="movie_removed_from_favorites">Movie removed from favorites.</string>
+    <string name="error_movie_favorites">There was an error, please retry!</string>
+    <string name="error_message_no_favorite_movies">There are no favorite movies yet!</string>
+    <string name="undo_string">Undo</string>
+    <string name="no_overview_available">(No overview available)</string>
+    <string name="no_videos_available">(No videos available)</string>
+    <string name="no_reviews_available">(No reviews available)</string>
+    <string name="reviews_expand_icon">Reviews expand icon</string>
+
+    <string name="overview_label">Overview</string>
+    <string name="videos_label">Videos</string>
+    <string name="reviews_label">Reviews</string>
+    <string name="video_thumbnail">Video thumbnail</string>
+
+    <string name="actual_page">Page %1$d of %2$d</string>
+    <string name="go_to_page">Go to page</string>
+    <string name="enter_page">Enter page number:</string>
+    <string name="go">Go</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_page_error">This page doesn\'t exist</string>
+    <string name="select_movies">Select movies</string>
+
+    <string name="libraries_label">Libraries used</string>
+    <string name="picasso">Picasso:</string>
+    <string name="picasso_web_site">http://square.github.io/picasso</string>
+    <string name="okhttp">OkHttp:</string>
+    <string name="okhttp_web_site">http://square.github.io/okhttp</string>
+    <string name="gson_label">Gson:</string>
+    <string name="gson_web_site">https://github.com/google/gson</string>
+
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018 Pierluca Masala <pierluca.masala@gmail.com>
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/select_movies">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_popular"
+                    android:icon="@drawable/ic_mood_black_24dp"
+                    android:tint="@color/button_grey"
+                    android:title="@string/pref_movies_selection_popular_label" />
+
+                <item
+                    android:id="@+id/nav_top_rated"
+                    android:icon="@drawable/ic_star_black_24dp"
+                    android:tint="@color/button_grey"
+                    android:title="@string/pref_movies_selection_top_rated_label" />
+
+                <item
+                    android:id="@+id/nav_favorite"
+                    android:icon="@drawable/ic_favorite_black_24dp"
+                    android:tint="@color/button_grey"
+                    android:title="@string/pref_movies_selection_favorite_label" />
+            </group>
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_credits"
+            android:icon="@drawable/ic_copyright_black_24dp"
+            android:tint="@color/button_grey"
+            android:title="@string/action_credits" />
+    </group>
+</menu>
